@@ -36,6 +36,7 @@ const facultyIds = ['ITC', 'MAB', 'EDU', 'LC', 'SOC']
 app.use(cors())
 app.use(morgan('tiny'))
 app.use(expressSanitizer())
+app.use(express.static('build'))
 
 app.get('/api/faculty', (req, res, next) => {
     res.json(facultyIds)
