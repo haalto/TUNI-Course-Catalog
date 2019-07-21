@@ -9,7 +9,7 @@
 /coverage
 
 # production
-
+/build
 
 # misc
 .DS_Store
@@ -24,8 +24,4 @@ yarn-error.log*
 debug.log
 
 #files
-1.json
-2.json
-3.json
-7.json
-9.json
+
