@@ -31,21 +31,35 @@ const axios = require('axios')
 const expressSanitizer = require('express-sanitizer')
 
 //data
-const facultyIds = ['ITC', 'MAB', 'EDU', 'LC', 'SOC']
+const facultyNames = ['ITC', 'MAB', 'EDU', 'LC', 'SOC']
+const facultyId = [1, 2, 3, 7, 9]
 
 app.use(cors())
 app.use(morgan('tiny'))
 app.use(expressSanitizer())
 app.use(express.static('build'))
 
-app.get('/api/faculty', (req, res, next) => {
-    res.json(facultyIds)
+app.get('/api/faculty', (req, res, next) => {  
+    
+    Promise.all(d.map (searchId => {
+        const url = (`https://sis-tuni.funidata.fi/kori/api/course-unit-search?activityPeriod=2019-08-26,2019-10-21&activityPeriod=2019-10-21,2020-01-01&activityPeriod=2020-01-01,2020-03-02&activityPeriod=2020-03-02,2020-06-01&limit=2000&orgId=tuni-org-101000000${searchId}&showMaxResults=false&start=0&uiLang=fi&universityOrgId=tuni-university-root-id&validity=ONGOING_AND_FUTURE&validityPeriod=2019-08-26,2019-10-21&validityPeriod=2019-10-21,2020-01-01&validityPeriod=2020-01-01,2020-03-02&validityPeriod=2020-03-02,2020-06-01`)
+        return axios(url)
+            .then(response => {
+               return response.data.searchResults
+            })
+    }))
+    .then(data=> {
+        res.json(data)
+    })
+    .catch(error => {
+        next(error)
+    })  
 })
 
 app.get('/api/faculty/:id', (req, res, next) => {
 
     const facultyId = req.sanitize(req.params.id)
-    const isAvailable = facultyIds.includes(facultyId)   
+    const isAvailable = facultyNames.includes(facultyId)   
     
     if (isAvailable) {
         

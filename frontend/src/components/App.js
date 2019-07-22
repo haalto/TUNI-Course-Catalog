@@ -27,7 +27,7 @@ const App = () => {
       const coursesCopy = {secondPeriod: courses.secondPeriod, firstPeriod: courses.firstPeriod, fourthPeriod: courses.fourthPeriod, thirdPeriod: courses.thirdPeriod.map(c => c.id === id ? {...c, showDetails: !c.showDetails} : c)}
       setCourses(coursesCopy)
     } else {
-      const coursesCopy = {secondPeriod: courses.secondPeriod, thirdPeriod: courses.thirdPeriod, firstPeriod: courses.firstPeriod, fourthPeriod: courses.fourthtPeriod.map(c => c.id === id ? {...c, showDetails: !c.showDetails} : c)}
+      const coursesCopy = {secondPeriod: courses.secondPeriod, thirdPeriod: courses.thirdPeriod, firstPeriod: courses.firstPeriod, fourthPeriod: courses.fourthPeriod.map(c => c.id === id ? {...c, showDetails: !c.showDetails} : c)}
       setCourses(coursesCopy)
     }
   }
@@ -59,7 +59,7 @@ const App = () => {
           if (startDate < new Date('2019-10-20').getTime()) {
             courseData.firstPeriod.push(courseCopy)
           }
-          if ((startDate >= new Date('2019-10-21').getTime() && startDate <= new Date('2019-12-30').getTime()) || (endDate >= new Date('2020-10-21').getTime() && startDate <= new Date('2019-10-20').getTime())) {
+          if ((startDate >= new Date('2019-10-21').getTime() && startDate <= new Date('2019-12-30').getTime()) || (endDate >= new Date('2019-10-21').getTime() && startDate <= new Date('2019-10-20').getTime())) {
             courseData.secondPeriod.push(courseCopy)
           }
           if ((startDate >= new Date('2020-01-01').getTime() && startDate <= new Date('2020-03-01').getTime()) || (endDate >= new Date('2020-03-01').getTime() && startDate <= new Date('2020-01-01').getTime())) {
@@ -73,7 +73,7 @@ const App = () => {
       //console.log(courseData.firstPeriod)
 
       if (id === 'ITC') {
-        setActiveFaculty('Faculty of Information and Technology and Communication Sciences')
+        setActiveFaculty('Faculty of Information Technology and Communication Sciences')
       } else if (id === 'MAB') {
         setActiveFaculty('Faculty of Management and Business')
       } else if (id === 'EDU') {
